@@ -1,27 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="form-container" style="max-width: 400px; margin: 80px auto;">
-    <h2 style="color: var(--accent-neon); text-align: center; margin-bottom: 20px;">ACCESO STAFF</h2>
+<div class="login-container">
+    <h2 class="login-title">ACCESO STAFF</h2>
     
-    {% with messages = get_flashed_messages(category_filter=["error"]) %}
-        {% if messages %}
-            <p style="color: #ff4d4d; text-align: center;">{{ messages[0] }}</p>
-        {% endif %}
-    {% endwith %}
-
-    <form action="{{ url_for('staff.login') }}" method="POST" class="gamer-form">
-        <div class="form-group">
-            <label>Usuario</label>
-            <input type="text" name="usuario" required>
-        </div>
+    <form action="{{ url_for('staff.login') }}" method="POST" class="login-form">
         
         <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" name="password" required>
+            <label class="login-label">Usuario</label>
+            <input type="text" name="usuario" class="login-input" required placeholder="Nombre de usuario">
         </div>
 
-        <button type="submit" class="btn-neon" style="width: 100%; margin-top: 20px;">Entrar al Panel</button>
+        <div class="form-group">
+            <label class="login-label">Contraseña</label>
+            <input type="password" name="password" class="login-input" required placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="btn-neon w-100 mt-3" style="padding: 12px; font-size: 1.1em;">
+            ENTRAR AL PANEL
+        </button>
+        
     </form>
+
+    <div class="mt-4">
+        <small style="color: #4a5568;">Solo personal autorizado de Huascarán E-Sports</small>
+    </div>
 </div>
 {% endblock %}

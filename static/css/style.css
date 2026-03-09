@@ -1,40 +1,30 @@
-/* Variables de color para fácil modificación */
+/* VARIABLES GLOBALES */
 :root {
-    --bg-color: #0d0e15;        /* Azul muy oscuro/negro */
-    --card-bg: #1a1c29;         /* Fondo para formularios y tarjetas */
-    --text-main: #e2e8f0;       /* Blanco grisáceo para leer bien */
-    --accent-neon: #00f3ff;     /* Cian Neón (puedes cambiarlo a morado o dorado MLBB) */
-    --accent-hover: #00c2cc;
-    --font-main: 'Rajdhani', sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --bg-color: #0d0e15;
+    --card-bg: #161a1c;
+    --accent-neon: #00f3ff;
+    --text-main: #ffffff;
+    --text-muted: #a0aec0;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    font-family: var(--font-main);
-    background-image: radial-gradient(circle at 50% 0%, #1a1c29 0%, transparent 50%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
 }
 
-/* Barra de Navegación */
+/* NAVBAR AJUSTADA */
 .navbar {
-    padding: 0px 0; /* 10px arriba y abajo, 0 a los lados (Bootstrap maneja los lados) */
+    padding: 10px 0;
+    transition: all 0.3s;
 }
 
 .logo {
-    font-size: 24px; /* Un poco más pequeño para que no ensanche la barra */
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 2px;
-    text-decoration: none !important; /* Evita que se subraye */
-    color: var(--text-main) !important; /* Lo mantiene blanco */
+    text-decoration: none !important;
 }
 
 .logo span {
@@ -42,227 +32,184 @@ body {
     text-shadow: 0 0 10px var(--accent-neon);
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--accent-neon);
-}
-
-/* Botones estilo Neón */
 .btn-neon {
-    padding: 8px 20px;
     border: 1px solid var(--accent-neon);
     background: transparent;
     color: var(--accent-neon) !important;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 0 5px rgba(0, 243, 255, 0.2);
-    text-decoration: none;
-    display: inline-block;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 .btn-neon:hover {
     background: var(--accent-neon);
     color: var(--bg-color) !important;
-    box-shadow: 0 0 15px var(--accent-neon), inset 0 0 10px var(--accent-neon);
+    box-shadow: 0 0 15px var(--accent-neon);
 }
 
-/* Contenedor principal */
-.container {
-    flex: 1;
-    padding: 40px 50px;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: var(--card-bg);
-    border-top: 1px solid #2d3748;
-    margin-top: auto;
-}
-
-/* Estilos para formularios */
-.form-container {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 8px;
+/* DISEÑO DNI (REGISTRO) */
+.dni-card {
+    max-width: 950px;
+    margin: 20px auto;
+    background: linear-gradient(135deg, rgba(16, 20, 28, 0.95) 0%, rgba(9, 11, 15, 0.95) 100%);
     border: 1px solid #2d3748;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #a0aec0;
-    font-size: 14px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    background: rgba(13, 14, 21, 0.8);
-    border: 1px solid #4a5568;
-    color: var(--text-main);
-    border-radius: 4px;
-    font-family: var(--font-main);
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--accent-neon);
-    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
-}
-
-.gamer-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--card-bg);
-    border-radius: 8px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
-.gamer-table th, .gamer-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #2d3748;
+.dni-header {
+    background: var(--accent-neon);
+    color: var(--bg-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
 }
 
-.gamer-table th {
-    background: rgba(0, 243, 255, 0.1);
-    color: var(--accent-neon);
-    text-transform: uppercase;
-    font-size: 14px;
+.dni-body {
+    display: flex;
+    padding: 25px;
+    gap: 30px;
 }
 
-.gamer-table tr:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-/* Área de subida Drag & Drop */
-.upload-container {
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.upload-area {
-    width: 100%;
-    min-height: 200px;
-    border: 2px dashed var(--accent-neon);
-    background: rgba(13, 14, 21, 0.8);
-    border-radius: 8px;
+.dni-left {
+    flex: 0 0 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
+    justify-content: space-between;
+}
+
+.photo-area {
+    width: 220px;
+    height: 220px;
+    border: 2px dashed #4a5568;
+    border-radius: 8px;
+    position: relative;
     cursor: pointer;
-    transition: all 0.3s ease;
-    
-    /* Ícono placeholder por defecto (Aquí usaremos la imagen que me diste) */
-    background-image: url("{{ url_for('static', filename='img/upload_icon.png') }}"); /* Asegúrate de guardar la imagen con este nombre en static/img */
-    background-repeat: no-repeat;
-    background-position: center 30px;
-    background-size: 80px auto; /* Tamaño del ícono */
-}
-
-/* Efectos al arrastrar una imagen encima */
-.upload-area.dragging {
-    border-color: #ffcc00; /* Un color amarillo neón para avisar */
-    background-color: rgba(255, 204, 0, 0.1);
-    box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
-}
-
-.upload-area p {
-    color: var(--text-main);
-    margin-top: 100px; /* Para que el texto quede debajo del ícono */
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-.upload-area small {
-    color: #a0aec0;
-}
-
-/* Contenedor de la vista previa de la imagen */
-.preview-container {
-    margin-top: 15px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-neon);
     overflow: hidden;
-    display: none; /* Oculto hasta que se seleccione una imagen */
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.preview-container img {
+.dni-right {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 15px;
+}
+
+.dni-label {
+    color: var(--text-muted);
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+.dni-input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid #4a5568;
+    color: var(--accent-neon);
+    padding: 8px;
+    border-radius: 4px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
-@media (max-width: 991px) { /* El punto donde Bootstrap cambia a celular */
-    .navbar > .container {
-        display: flex;
-        flex-wrap: nowrap !important; /* Evita que el logo y el botón se separen en 2 líneas */
-        justify-content: space-between;
+/* PANEL DE VALIDACIÓN (STAFF) */
+.table-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #2d3748;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* RESPONSIVE (CELULARES) */
+@media (max-width: 850px) {
+    .container { padding-left: 0; padding-right: 0; }
+    
+    .dni-card {
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
     }
     
-    .logo {
-        font-size: 18px !important; /* Achica el logo */
-        white-space: nowrap; /* Prohíbe que se parta en dos líneas */
-    }
-
-    /* Mejora la caja del menú cuando se abre */
-    .navbar-collapse {
-        background: rgba(13, 14, 21, 0.98);
+    .dni-body {
+        flex-direction: column;
         padding: 15px;
-        border-radius: 8px;
-        margin-top: 15px;
-        border: 1px solid var(--accent-neon);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-
-    .navbar-nav {
-        align-items: center !important;
-        width: 100%;
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 12px;
-        margin-left: 0 !important; /* Quita márgenes de PC */
     }
     
-    /* Centra el botón de Inscribir y el Dropdown admin */
-    .navbar-nav .btn-neon, .navbar-nav .dropdown-toggle {
-        display: inline-block;
-        width: 80%;
+    .dni-header {
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.8em;
     }
+    
+    .dni-right {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-area {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* --- ESTILOS LOGIN --- */
+.login-container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    background: rgba(16, 20, 28, 0.95);
+    border: 1px solid var(--accent-neon);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+    text-align: center;
+}
+
+.login-title {
+    color: var(--accent-neon);
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Reemplaza los cuadros blancos por estos inputs oscuros neón */
+.login-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #2d3748;
+    border-radius: 6px;
+    padding: 12px;
+    color: var(--accent-neon);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1em;
+    transition: 0.3s;
+}
+
+.login-input:focus {
+    outline: none;
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+}
+
+.login-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
