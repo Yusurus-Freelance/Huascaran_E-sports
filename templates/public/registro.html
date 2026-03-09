@@ -2,13 +2,21 @@
 
 {% block content %}
 <style>
+    /* 1. ESTILOS BASE (MOBILE-FIRST) */
+    .container {
+        padding: 0 !important; /* Quita el relleno lateral de Bootstrap */
+    }
+
     .dni-card {
-        max-width: 950px;
-        margin: 20px auto 50px auto;
+        width: 100vw; /* 100% del ancho de la pantalla */
+        margin: 0; /* Sin márgenes en absoluto */
+        border-radius: 0; /* Quita bordes redondeados en celular para verse como app nativa */
+        border-left: none; /* Elimina borde lateral para ganar 2px extra */
+        border-right: none;
         background: linear-gradient(135deg, rgba(16, 20, 28, 0.95) 0%, rgba(9, 11, 15, 0.95) 100%);
-        border: 2px solid #2d3748;
-        border-radius: 15px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 243, 255, 0.05);
+        border-top: 2px solid #2d3748;
+        border-bottom: 2px solid #2d3748;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(0, 243, 255, 0.05);
         position: relative;
         overflow: hidden;
         font-family: 'Rajdhani', sans-serif;
@@ -17,34 +25,37 @@
     .dni-header {
         background: var(--accent-neon);
         color: var(--bg-color);
-        padding: 8px 20px; /* Reducido de 10 a 8 */
+        padding: 10px 15px;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: bold;
-        letter-spacing: 2px;
-        border-bottom: 3px solid #fff;
+        flex-direction: column;
+        text-align: center;
+        gap: 2px;
+        border-bottom: 2px solid #fff;
     }
+    
+    .dni-header-text { font-weight: bold; letter-spacing: 1px; font-size: 0.85em; text-transform: uppercase; }
+    .dni-header- MLBB { font-weight: bold; font-size: 0.75em; opacity: 0.8; }
 
     .dni-body {
+        padding: 15px 10px; /* Reducimos relleno lateral para ganar espacio */
         display: flex;
-        padding: 25px 25px 5px 25px; /* Reducimos el 25px inferior a 5px */
-        gap: 30px;
-        align-items: stretch; 
+        flex-direction: column;
+        gap: 25px;
     }
 
-    /* COLUMNA IZQUIERDA */
+    /* COLUMNA IZQUIERDA EN CELULAR */
     .dni-left {
-        flex: 0 0 220px; /* Reducido de 250 a 220 */
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between; 
+        gap: 15px;
     }
 
+    /* RECUADRO DE FOTO CON MEDIDA ESTRICTA (EVITA QUE SE ESTIRE) */
     .photo-area {
-        width: 220px; /* Reducido de 250 a 220 */
-        height: 220px; /* Reducido de 250 a 220 */
+        width: 200px; /* Medida fija */
+        height: 200px; /* Medida fija para que sea cuadrado perfecto siempre */
         border: 2px dashed #4a5568;
         border-radius: 8px;
         background: rgba(0,0,0,0.4);
@@ -56,87 +67,110 @@
         position: relative;
         overflow: hidden;
         transition: all 0.3s ease;
+        margin: 0 auto;
     }
 
-    .photo-area:hover {
-        border-color: var(--accent-neon);
-    }
+    .photo-area:hover { border-color: var(--accent-neon); }
 
-    /* COLUMNA DERECHA */
+    /* COLUMNA DERECHA EN CELULAR */
     .dni-right {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px 15px; /* ESPACIO REDUCIDO ENTRE INPUTS */
-        align-content: start;
-    }
-
-    .dni-input-group {
+        width: 100%;
         display: flex;
         flex-direction: column;
+        gap: 12px;
+        padding: 0 10px; /* Pequeño margen interno */
     }
 
+    .dni-input-group { display: flex; flex-direction: column; }
+
     .dni-label {
-        color: #a0aec0;
-        font-size: 0.8em; /* Letra un puntito más pequeña */
-        text-transform: uppercase;
-        margin-bottom: 2px; /* Margen reducido */
-        letter-spacing: 1px;
+        color: #a0aec0; font-size: 0.75em; text-transform: uppercase;
+        margin-bottom: 2px; letter-spacing: 0.5px;
     }
 
     .dni-input {
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid #4a5568;
-        border-radius: 4px;
-        padding: 6px 10px; /* INPUTS MÁS DELGADOS */
-        color: var(--accent-neon);
-        font-weight: 600;
-        font-size: 0.95em;
-        transition: border-color 0.3s;
+        background: rgba(0, 0, 0, 0.3); border: 1px solid #4a5568;
+        border-radius: 4px; padding: 8px; color: var(--accent-neon);
+        font-weight: 600; font-size: 0.9em; transition: border-color 0.3s;
     }
+    .dni-input:focus { outline: none; border-color: var(--accent-neon); background: rgba(0, 243, 255, 0.05); }
 
-    .dni-input:focus {
-        outline: none;
-        border-color: var(--accent-neon);
-        background: rgba(0, 243, 255, 0.05);
+    .roster-divider {
+        border-top: 1px solid #2d3748; margin: 10px 0 5px 0;
+        padding-top: 10px; text-align: center;
     }
+    
+    .roster-divider-text { color: var(--accent-neon); font-size: 0.85em; font-weight: bold; letter-spacing: 1px; }
 
-    @media (max-width: 850px) {
-        .dni-body {
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
+    .empresa-logo-container { text-align: center; margin-top: 5px; }
+    .empresa-logo-img { max-width: 100px; opacity: 0.8; filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.3)); }
+    .empresa-logo-text { color: var(--accent-neon); font-size: 0.6em; margin-top: 4px; letter-spacing: 1px; font-weight: bold; }
+    
+    .btn-container { padding: 0 15px 20px 15px; }
+
+    /* 2. ESTILOS PARA PC (PANTALLAS GRANDES) */
+    @media (min-width: 768px) {
+        .dni-card { margin: 20px auto 50px auto; border-radius: 15px; }
+        .dni-header { padding: 8px 20px; flex-direction: row; justify-content: space-between; align-items: center; }
+        .dni-header-text { font-size: 0.85em; letter-spacing: 2px; }
+        .dni-header- MLBB { font-size: 0.85em; }
+
+        .dni-body { flex-direction: row; padding: 25px; gap: 30px; align-items: stretch; }
+        
+        .dni-left { flex: 0 0 220px; justify-content: space-between; gap: 0; }
+        .photo-area { width: 220px; height: 220px; }
+
         .dni-right {
-            grid-template-columns: 1fr;
-            width: 100%;
+            flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 12px 15px; align-content: start; padding: 0;
         }
-        .dni-left {
-            gap: 20px; 
+
+        .dni-input-group.full-width { grid-column: 1 / -1; }
+        .dni-label { font-size: 0.8em; }
+        .dni-input { padding: 8px 10px; font-size: 0.95em; }
+        
+        .roster-divider { grid-column: 1 / -1; margin: 5px 0; }
+        .roster-divider-text { font-size: 1em; }
+
+        .empresa-logo-container { margin-top: auto; padding-top: 15px; }
+        .empresa-logo-img { max-width: 140px; }
+        
+        .btn-container { padding: 0 25px 25px 25px; margin-top: -10px; }
+    }
+
+    /* Ajuste para que en PC se vea separado del navbar y centrado */
+    @media (min-width: 768px) {
+        .dni-card {
+            margin: 50px auto !important; /* Añadimos un margen superior de 50px */
+            width: 90% !important; /* Que no ocupe el 100vw en PC */
+            border-radius: 15px !important; /* Devolvemos los bordes redondeados */
+            border: 2px solid #2d3748 !important; /* Devolvemos los bordes laterales */
+        }
+        
+        .container {
+            padding: 0 15px !important; /* Devolvemos el padding normal de Bootstrap en PC */
         }
     }
 </style>
 
-<div class="container">
-    <div class="dni-card">
+<div class="container" style="padding: 0 10px;"> <div class="dni-card">
         
         <div class="dni-header">
-            <span>REPÚBLICA E-SPORTS // DOCUMENTO NACIONAL DE INSCRIPCIÓN</span>
-            <span>MLBB-2026</span>
+            <span class="dni-header-text">REPÚBLICA E-SPORTS // DOCUMENTO NACIONAL DE INSCRIPCIÓN</span>
+            <span class="dni-header- MLBB ">MLBB-2026</span>
         </div>
 
         <form action="{{ url_for('public.registro') }}" method="POST" enctype="multipart/form-data">
             
             <div class="dni-body">
-                
                 <div class="dni-left">
                     <div class="dni-input-group" style="width: 100%;">
                         <span class="dni-label" style="text-align: center;">EMBLEMA DEL EQUIPO (LOGO)</span>
                         
                         <div class="photo-area" id="drop-area">
                             <div id="drop-content" style="z-index: 1;">
-                                <span style="font-size: 45px; margin-bottom: 5px; display: block;">🛡️</span>
-                                <p style="margin: 0; color: #a0aec0; font-size: 0.85em;">Arrastra imagen<br>o haz clic</p>
+                                <span style="font-size: 40px; margin-bottom: 5px; display: block;">🛡️</span>
+                                <p style="margin: 0; color: #a0aec0; font-size: 0.8em;">Arrastra imagen<br>o haz clic</p>
                             </div>
                             <img src="#" alt="Vista Previa" id="preview-image" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
                             <input type="file" name="logo" id="file-input" accept="image/*" style="display: none;">
@@ -144,17 +178,16 @@
                         <small style="color: #4a5568; font-size: 0.7em; text-align: center; margin-top: 5px;">Formato sugerido: Cuadrado (1:1)</small>
                     </div>
 
-                    <div style="margin-top: 15px; text-align: center;">
-                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Empresa" style="max-width: 120px; opacity: 0.8; filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.3));">
-                        <p style="color: var(--accent-neon); font-size: 0.65em; margin-top: 5px; letter-spacing: 2px; font-weight: bold;">ORGANIZADOR OFICIAL</p>
+                    <div class="empresa-logo-container">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Empresa" class="empresa-logo-img">
+                        <p class="empresa-logo-text">ORGANIZADOR OFICIAL</p>
                     </div>
                 </div>
 
                 <div class="dni-right">
-                    
-                    <div class="dni-input-group" style="grid-column: 1 / -1;">
+                    <div class="dni-input-group full-width">
                         <label class="dni-label">Apellidos y Nombres (Nombre del Equipo)</label>
-                        <input type="text" name="nombre_equipo" class="dni-input" required placeholder="Ej: Tigres del Sur">
+                        <input type="text" name="nombre_equipo" class="dni-input" required placeholder="Ej: Titanes del Norte">
                     </div>
 
                     <div class="dni-input-group">
@@ -167,8 +200,8 @@
                         <input type="datetime-local" name="fecha_yapeo" class="dni-input" required style="color-scheme: dark;">
                     </div>
 
-                    <div style="grid-column: 1 / -1; border-top: 1px solid #2d3748; margin-top: 5px; padding-top: 10px; margin-bottom: 2px;">
-                        <span class="dni-label" style="color: var(--accent-neon); font-size: 1em; font-weight: bold;">[ ROSTER OFICIAL - JUGADORES TITULARES + SUPLENTE ]</span>
+                    <div class="roster-divider">
+                        <span class="roster-divider-text">[ ROSTER OFICIAL - JUGADORES TITULARES + SUPLENTE ]</span>
                     </div>
 
                     {% for i in range(1, 7) %}
@@ -177,16 +210,14 @@
                         <input type="text" name="integrante" class="dni-input" required placeholder="Nick de MLBB">
                     </div>
                     {% endfor %}
-
                 </div>
             </div>
 
-            <div style="padding: 0 25px 25px 25px; margin-top: -20px;">
+            <div class="btn-container">
                 <button type="submit" class="btn-neon" style="width: 100%; font-size: 1.1em; padding: 12px;">
                     FIRMAR Y ENVIAR DOCUMENTO DE INSCRIPCIÓN
                 </button>
             </div>
-
         </form>
     </div>
 </div>
@@ -201,10 +232,7 @@
     fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
 
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, e => {
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        dropArea.addEventListener(eventName, e => { e.preventDefault(); e.stopPropagation(); });
     });
 
     ['dragenter', 'dragover'].forEach(eventName => {

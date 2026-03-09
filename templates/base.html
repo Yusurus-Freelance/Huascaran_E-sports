@@ -12,48 +12,77 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(13, 14, 21, 0.9); border-bottom: 2px solid var(--accent-neon); box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(13, 14, 21, 0.95); border-bottom: 2px solid var(--accent-neon); position: sticky; top: 0; z-index: 1000;">
         <div class="container">
             <a class="navbar-brand logo" href="{{ url_for('public.index') }}">HUASCARÁN <span>E-SPORTS</span></a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" style="border-color: var(--accent-neon);">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse" id="menuNavegacion">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('public.index') }}">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('public.lista_equipos') }}">Equipos Confirmados</a></li>
-                    <li class="nav-item ms-lg-3 my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('public.lista_equipos') }}">Equipos</a></li>
+                    <li class="nav-item ms-lg-3">
                         <a href="{{ url_for('public.registro') }}" class="btn btn-neon">Inscribir Equipo</a>
                     </li>
                     
                     {% if 'staff_user' in session %}
                     <li class="nav-item dropdown ms-lg-3">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="background: rgba(0, 243, 255, 0.1); border: 1px solid var(--accent-neon); border-radius: 4px; padding: 8px 15px; color: var(--accent-neon);">
+                        <a class="nav-link dropdown-toggle" href="#" id="staffDrop" role="button" data-bs-toggle="dropdown" style="color: var(--accent-neon); border: 1px solid var(--accent-neon); border-radius: 4px; padding: 5px 15px;">
                             🎮 {{ session['staff_user'] }}
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" style="background-color: var(--card-bg); border: 1px solid var(--accent-neon);">
-                            <li><a class="dropdown-item" href="{{ url_for('staff.dashboard') }}" style="color: var(--text-main);">Panel de Control</a></li>
-                            <li><hr class="dropdown-divider" style="border-color: #4a5568;"></li>
-                            <li><a class="dropdown-item text-danger" href="{{ url_for('staff.logout') }}">Cerrar Sesión</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="{{ url_for('staff.dashboard') }}">Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="{{ url_for('staff.logout') }}">Salir</a></li>
                         </ul>
                     </li>
                     {% else %}
                     <li class="nav-item ms-lg-3">
-                        <a href="{{ url_for('staff.login') }}" class="nav-link" style="color: #a0aec0;">STAFF</a>
+                        <a href="{{ url_for('staff.login') }}" class="nav-link" style="color: #4a5568; font-size: 0.9em;">Staff</a>
                     </li>
                     {% endif %}
                 </ul>
+            </div>
+            
+            <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="menuLateral" style="background: #0d0e15; border-left: 2px solid var(--accent-neon); width: 280px;">
+                <div class="offcanvas-header" style="border-bottom: 1px solid #2d3748;">
+                    <h5 style="color: var(--accent-neon); margin: 0; font-family: 'Rajdhani';">MENÚ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav text-center">
+                        <li class="nav-item my-2"><a class="nav-link text-light" href="{{ url_for('public.index') }}">Inicio</a></li>
+                        <li class="nav-item my-2"><a class="nav-link text-light" href="{{ url_for('public.lista_equipos') }}">Equipos</a></li>
+                        <li class="nav-item my-3">
+                            <a href="{{ url_for('public.registro') }}" class="btn btn-neon w-100">Inscribir Equipo</a>
+                        </li>
+                        
+                        <hr style="border-color: #2d3748;">
+
+                        {% if 'staff_user' in session %}
+                            <li class="nav-item">
+                                <p class="text-info small mb-2">Sesión: {{ session['staff_user'] }}</p>
+                                <a href="{{ url_for('staff.dashboard') }}" class="btn btn-outline-info w-100 mb-2">Panel Control</a>
+                                <a href="{{ url_for('staff.logout') }}" class="btn btn-outline-danger w-100">Cerrar Sesión</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{{ url_for('staff.login') }}" class="nav-link" style="color: #4a5568;">Acceso Staff</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 
     <main class="container flex-grow-1 py-4">
-        
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <div class="mt-3">
+                <div class="mb-4">
                 {% for category, message in messages %}
                     <div class="alert alert-dismissible fade show" role="alert" 
                          style="background-color: var(--card-bg); color: var(--text-main); 
@@ -69,7 +98,6 @@
 
         {% block content %}
         {% endblock %}
-        
     </main>
 
     <footer class="mt-auto py-3 text-center" style="background: var(--card-bg); border-top: 1px solid #2d3748;">
