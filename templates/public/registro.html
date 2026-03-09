@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2 style="color: var(--accent-neon); text-align: center; margin-bottom: 20px;">INSCRIBE A TU EQUIPO</h2>
+    
+    <form action="{{ url_for('public.registro') }}" method="POST" class="gamer-form">
+        <div class="form-group">
+            <label>Nombre del Equipo</label>
+            <input type="text" name="nombre_equipo" required placeholder="Ej: Huascarán Gaming">
+        </div>
+        
+        <div class="form-group">
+            <label>WhatsApp de Contacto</label>
+            <input type="text" name="contacto" required placeholder="+51 999 888 777">
+        </div>
+
+        <div class="form-group">
+            <label>N° de Operación YAPE</label>
+            <input type="text" name="operacion_yape" required placeholder="Ej: 00456123">
+        </div>
+
+        <h3 style="margin-top: 20px; color: #a0aec0;">Roster (Nicks de MLBB)</h3>
+        {% for i in range(1, 6) %}
+        <div class="form-group">
+            <input type="text" name="integrante" required placeholder="Nick Jugador {{ i }}">
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn-neon" style="width: 100%; margin-top: 20px;">Enviar Inscripción</button>
+    </form>
+</div>
+{% endblock %}

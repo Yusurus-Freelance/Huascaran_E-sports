@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2 style="color: var(--accent-neon);">PANEL DE VALIDACIÓN</h2>
+        <a href="{{ url_for('staff.logout') }}" style="color: #ff4d4d; text-decoration: none;">Cerrar Sesión</a>
+    </div>
+
+    <table class="gamer-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Equipo</th>
+                <th>Contacto</th>
+                <th>N° Yape</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in equipos %}
+            <tr>
+                <td>{{ equipo.id }}</td>
+                <td>{{ equipo.nombre }}</td>
+                <td>{{ equipo.contacto }}</td>
+                <td style="color: var(--accent-neon); font-weight: bold;">{{ equipo.yape }}</td>
+                <td>{{ equipo.fecha }}</td>
+                <td>
+                    <button class="btn-neon" style="padding: 5px 10px; font-size: 14px;">Aprobar</button>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 20px;">No hay equipos pendientes de validación.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

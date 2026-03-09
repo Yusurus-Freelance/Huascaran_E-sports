@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center; margin-top: 80px;">
+    <h1 style="font-size: 3em; text-shadow: 0 0 15px var(--accent-neon);">
+        ¡BIENVENIDOS A HUASCARÁN E-SPORTS!
+    </h1>
+    <p style="font-size: 1.5em; margin-top: 20px; color: #a0aec0;">
+        El mejor torneo de Mobile Legends: Bang Bang está por comenzar.
+    </p>
+    
+    <div style="margin-top: 50px;">
+        <a href="{{ url_for('public.registro') }}" class="btn-neon" style="font-size: 1.2em; padding: 15px 30px;">
+            ¡Inscribe a tu equipo ahora!
+        </a>
+    </div>
+</div>
+{% endblock %}

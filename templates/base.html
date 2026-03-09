@@ -11,9 +11,12 @@
     <nav class="navbar">
         <div class="logo">HUASCARÁN <span>E-SPORTS</span></div>
         <ul class="nav-links">
-            <li><a href="{{ url_for('index') }}">Inicio</a></li>
-            <li><a href="{{ url_for('registro') }}" class="btn-neon">Inscribir Equipo</a></li>
-            <li><a href="{{ url_for('staff_login') }}" class="btn-staff">Staff</a></li>
+            <li><a href="{{ url_for('public.index') }}">Inicio</a></li>
+            
+            <li><a href="{{ url_for('public.lista_equipos') }}">Equipos Confirmados</a></li>
+            
+            <li><a href="{{ url_for('public.registro') }}" class="btn-neon">Inscribir Equipo</a></li>
+            <li><a href="{{ url_for('staff.login') }}" class="btn-staff">Staff</a></li>
         </ul>
     </nav>
 

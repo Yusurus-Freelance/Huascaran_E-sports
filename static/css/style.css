@@ -100,3 +100,66 @@ footer {
     border-top: 1px solid #2d3748;
     margin-top: auto;
 }
+
+/* Estilos para formularios */
+.form-container {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #2d3748;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(13, 14, 21, 0.8);
+    border: 1px solid #4a5568;
+    color: var(--text-main);
+    border-radius: 4px;
+    font-family: var(--font-main);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.gamer-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gamer-table th, .gamer-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #2d3748;
+}
+
+.gamer-table th {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--accent-neon);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.gamer-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
