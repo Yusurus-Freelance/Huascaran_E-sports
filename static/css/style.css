@@ -1,0 +1,102 @@
+/* Variables de color para fácil modificación */
+:root {
+    --bg-color: #0d0e15;        /* Azul muy oscuro/negro */
+    --card-bg: #1a1c29;         /* Fondo para formularios y tarjetas */
+    --text-main: #e2e8f0;       /* Blanco grisáceo para leer bien */
+    --accent-neon: #00f3ff;     /* Cian Neón (puedes cambiarlo a morado o dorado MLBB) */
+    --accent-hover: #00c2cc;
+    --font-main: 'Rajdhani', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    background-image: radial-gradient(circle at 50% 0%, #1a1c29 0%, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de Navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(13, 14, 21, 0.9);
+    border-bottom: 2px solid var(--accent-neon);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-neon);
+    text-shadow: 0 0 10px var(--accent-neon);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-neon);
+}
+
+/* Botones estilo Neón */
+.btn-neon {
+    padding: 10px 20px;
+    border: 1px solid var(--accent-neon);
+    background: transparent;
+    color: var(--accent-neon) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 5px rgba(0, 243, 255, 0.2);
+}
+
+.btn-neon:hover {
+    background: var(--accent-neon);
+    color: var(--bg-color) !important;
+    box-shadow: 0 0 15px var(--accent-neon), inset 0 0 10px var(--accent-neon);
+}
+
+/* Contenedor principal */
+.container {
+    flex: 1;
+    padding: 40px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--card-bg);
+    border-top: 1px solid #2d3748;
+    margin-top: auto;
+}
