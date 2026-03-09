@@ -11,23 +11,50 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Logo</th>
                 <th>Equipo</th>
                 <th>Contacto</th>
-                <th>N° Yape</th>
-                <th>Fecha</th>
+                <th>Fecha/Hora Yape</th>
                 <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             {% for equipo in equipos %}
             <tr>
-                <td>{{ equipo.id }}</td>
-                <td>{{ equipo.nombre }}</td>
-                <td>{{ equipo.contacto }}</td>
-                <td style="color: var(--accent-neon); font-weight: bold;">{{ equipo.yape }}</td>
-                <td>{{ equipo.fecha }}</td>
+                <td>{{ equipo.idEquipos }}</td>
+                
                 <td>
-                    <button class="btn-neon" style="padding: 5px 10px; font-size: 14px;">Aprobar</button>
+                    <div style="width: 50px; height: 50px; border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-neon); display: flex; align-items: center; justify-content: center; background: rgba(0, 243, 255, 0.1);">
+                        {% if equipo.logo %}
+                            <img src="{{ equipo.logo }}" alt="Logo {{ equipo.nombre }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                            {% set nombre_limpio = equipo.nombre|trim %}
+                            {% set iniciales = nombre_limpio[0] ~ nombre_limpio[-1] %}
+                            <span style="font-size: 18px; font-weight: bold; color: var(--accent-neon); text-transform: uppercase;">
+                                {{ iniciales }}
+                            </span>
+                        {% endif %}
+                    </div>
+                </td>
+                
+                <td>{{ equipo.nombre }}</td>
+
+                <td>{{ equipo.contacto }}</td>
+
+                <td style="color: var(--accent-neon); font-weight: bold;">
+                    {% if equipo.fecha_yapeo %}
+                        {{ equipo.fecha_yapeo.replace('T', ' a las ') }}
+                    {% else %}
+                        Pendiente
+                    {% endif %}
+                </td>
+
+                <td>
+                    <form action="{{ url_for('staff.aprobar', id_equipo=equipo.idEquipos) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn-neon" style="padding: 5px 10px; font-size: 14px; cursor: pointer;">
+                            Aprobar
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% else %}

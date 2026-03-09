@@ -1,33 +1,240 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="form-container">
-    <h2 style="color: var(--accent-neon); text-align: center; margin-bottom: 20px;">INSCRIBE A TU EQUIPO</h2>
-    
-    <form action="{{ url_for('public.registro') }}" method="POST" class="gamer-form">
-        <div class="form-group">
-            <label>Nombre del Equipo</label>
-            <input type="text" name="nombre_equipo" required placeholder="Ej: Huascarán Gaming">
-        </div>
+<style>
+    .dni-card {
+        max-width: 950px;
+        margin: 20px auto 50px auto;
+        background: linear-gradient(135deg, rgba(16, 20, 28, 0.95) 0%, rgba(9, 11, 15, 0.95) 100%);
+        border: 2px solid #2d3748;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 243, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+    .dni-header {
+        background: var(--accent-neon);
+        color: var(--bg-color);
+        padding: 8px 20px; /* Reducido de 10 a 8 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        letter-spacing: 2px;
+        border-bottom: 3px solid #fff;
+    }
+
+    .dni-body {
+        display: flex;
+        padding: 25px 25px 5px 25px; /* Reducimos el 25px inferior a 5px */
+        gap: 30px;
+        align-items: stretch; 
+    }
+
+    /* COLUMNA IZQUIERDA */
+    .dni-left {
+        flex: 0 0 220px; /* Reducido de 250 a 220 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; 
+    }
+
+    .photo-area {
+        width: 220px; /* Reducido de 250 a 220 */
+        height: 220px; /* Reducido de 250 a 220 */
+        border: 2px dashed #4a5568;
+        border-radius: 8px;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .photo-area:hover {
+        border-color: var(--accent-neon);
+    }
+
+    /* COLUMNA DERECHA */
+    .dni-right {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 15px; /* ESPACIO REDUCIDO ENTRE INPUTS */
+        align-content: start;
+    }
+
+    .dni-input-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dni-label {
+        color: #a0aec0;
+        font-size: 0.8em; /* Letra un puntito más pequeña */
+        text-transform: uppercase;
+        margin-bottom: 2px; /* Margen reducido */
+        letter-spacing: 1px;
+    }
+
+    .dni-input {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #4a5568;
+        border-radius: 4px;
+        padding: 6px 10px; /* INPUTS MÁS DELGADOS */
+        color: var(--accent-neon);
+        font-weight: 600;
+        font-size: 0.95em;
+        transition: border-color 0.3s;
+    }
+
+    .dni-input:focus {
+        outline: none;
+        border-color: var(--accent-neon);
+        background: rgba(0, 243, 255, 0.05);
+    }
+
+    @media (max-width: 850px) {
+        .dni-body {
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .dni-right {
+            grid-template-columns: 1fr;
+            width: 100%;
+        }
+        .dni-left {
+            gap: 20px; 
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="dni-card">
         
-        <div class="form-group">
-            <label>WhatsApp de Contacto</label>
-            <input type="text" name="contacto" required placeholder="+51 999 888 777">
+        <div class="dni-header">
+            <span>REPÚBLICA E-SPORTS // DOCUMENTO NACIONAL DE INSCRIPCIÓN</span>
+            <span>MLBB-2026</span>
         </div>
 
-        <div class="form-group">
-            <label>N° de Operación YAPE</label>
-            <input type="text" name="operacion_yape" required placeholder="Ej: 00456123">
-        </div>
+        <form action="{{ url_for('public.registro') }}" method="POST" enctype="multipart/form-data">
+            
+            <div class="dni-body">
+                
+                <div class="dni-left">
+                    <div class="dni-input-group" style="width: 100%;">
+                        <span class="dni-label" style="text-align: center;">EMBLEMA DEL EQUIPO (LOGO)</span>
+                        
+                        <div class="photo-area" id="drop-area">
+                            <div id="drop-content" style="z-index: 1;">
+                                <span style="font-size: 45px; margin-bottom: 5px; display: block;">🛡️</span>
+                                <p style="margin: 0; color: #a0aec0; font-size: 0.85em;">Arrastra imagen<br>o haz clic</p>
+                            </div>
+                            <img src="#" alt="Vista Previa" id="preview-image" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
+                            <input type="file" name="logo" id="file-input" accept="image/*" style="display: none;">
+                        </div>
+                        <small style="color: #4a5568; font-size: 0.7em; text-align: center; margin-top: 5px;">Formato sugerido: Cuadrado (1:1)</small>
+                    </div>
 
-        <h3 style="margin-top: 20px; color: #a0aec0;">Roster (Nicks de MLBB)</h3>
-        {% for i in range(1, 6) %}
-        <div class="form-group">
-            <input type="text" name="integrante" required placeholder="Nick Jugador {{ i }}">
-        </div>
-        {% endfor %}
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Empresa" style="max-width: 120px; opacity: 0.8; filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.3));">
+                        <p style="color: var(--accent-neon); font-size: 0.65em; margin-top: 5px; letter-spacing: 2px; font-weight: bold;">ORGANIZADOR OFICIAL</p>
+                    </div>
+                </div>
 
-        <button type="submit" class="btn-neon" style="width: 100%; margin-top: 20px;">Enviar Inscripción</button>
-    </form>
+                <div class="dni-right">
+                    
+                    <div class="dni-input-group" style="grid-column: 1 / -1;">
+                        <label class="dni-label">Apellidos y Nombres (Nombre del Equipo)</label>
+                        <input type="text" name="nombre_equipo" class="dni-input" required placeholder="Ej: Tigres del Sur">
+                    </div>
+
+                    <div class="dni-input-group">
+                        <label class="dni-label">Línea de Contacto (WhatsApp)</label>
+                        <input type="text" name="contacto" class="dni-input" required placeholder="+51 ...">
+                    </div>
+
+                    <div class="dni-input-group">
+                        <label class="dni-label">Registro de Emisión (Fecha Yape)</label>
+                        <input type="datetime-local" name="fecha_yapeo" class="dni-input" required style="color-scheme: dark;">
+                    </div>
+
+                    <div style="grid-column: 1 / -1; border-top: 1px solid #2d3748; margin-top: 5px; padding-top: 10px; margin-bottom: 2px;">
+                        <span class="dni-label" style="color: var(--accent-neon); font-size: 1em; font-weight: bold;">[ ROSTER OFICIAL - JUGADORES TITULARES + SUPLENTE ]</span>
+                    </div>
+
+                    {% for i in range(1, 7) %}
+                    <div class="dni-input-group">
+                        <label class="dni-label">Identidad Operador 0{{ i }} {% if i == 6 %}(Suplente){% endif %}</label>
+                        <input type="text" name="integrante" class="dni-input" required placeholder="Nick de MLBB">
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <div style="padding: 0 25px 25px 25px; margin-top: -20px;">
+                <button type="submit" class="btn-neon" style="width: 100%; font-size: 1.1em; padding: 12px;">
+                    FIRMAR Y ENVIAR DOCUMENTO DE INSCRIPCIÓN
+                </button>
+            </div>
+
+        </form>
+    </div>
 </div>
+
+<script>
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('file-input');
+    const previewImage = document.getElementById('preview-image');
+    const dropContent = document.getElementById('drop-content');
+
+    dropArea.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, e => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.style.borderColor = 'var(--accent-neon)');
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.style.borderColor = '#4a5568');
+    });
+
+    dropArea.addEventListener('drop', e => {
+        const file = e.dataTransfer.files[0];
+        fileInput.files = e.dataTransfer.files;
+        handleFile(file);
+    });
+
+    function handleFile(file) {
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block'; 
+                dropContent.style.display = 'none';   
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Por favor, selecciona una imagen válida.');
+            previewImage.style.display = 'none';
+            dropContent.style.display = 'block';
+        }
+    }
+</script>
 {% endblock %}

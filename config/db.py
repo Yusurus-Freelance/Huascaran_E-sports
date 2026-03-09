@@ -6,14 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_db_connection():
-    # --- RADAR DE DEBUG ---
-    print(f"Intentando conectar con:")
-    print(f"HOST: '{os.getenv('DB_HOST')}'")
-    print(f"USER: '{os.getenv('DB_USER')}'")
-    print(f"DB: '{os.getenv('DB_NAME')}'")
-    print(f"PASSWORD: '{os.getenv('DB_PASSWORD')}'")
-    # ----------------------
-
     try:
         connection = pymysql.connect(
             host=os.getenv('DB_HOST') or 'localhost',

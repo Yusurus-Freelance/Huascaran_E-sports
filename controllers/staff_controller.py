@@ -38,3 +38,23 @@ def dashboard():
 def logout():
     session.clear() # Destruye la sesión
     return redirect(url_for('public.index'))
+
+@staff_bp.route('/aprobar/<int:id_equipo>', methods=['POST'])
+def aprobar(id_equipo):
+    # Verificamos que el staff siga logueado
+    if 'staff_id' not in session:
+        return redirect(url_for('staff.login'))
+        
+    # Obtenemos el ID del staff desde la sesión actual
+    id_staff_actual = session['staff_id']
+    
+    # Ejecutamos la actualización
+    exito = EquipoModel.aprobar_equipo(id_equipo, id_staff_actual)
+    
+    if exito:
+        flash('¡Equipo validado exitosamente!', 'success')
+    else:
+        flash('Hubo un error al validar el equipo.', 'error')
+        
+    # Recargamos el panel
+    return redirect(url_for('staff.dashboard'))

@@ -26,19 +26,15 @@ body {
 
 /* Barra de Navegación */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background: rgba(13, 14, 21, 0.9);
-    border-bottom: 2px solid var(--accent-neon);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    padding: 0px 0; /* 10px arriba y abajo, 0 a los lados (Bootstrap maneja los lados) */
 }
 
 .logo {
-    font-size: 28px;
+    font-size: 24px; /* Un poco más pequeño para que no ensanche la barra */
     font-weight: 700;
     letter-spacing: 2px;
+    text-decoration: none !important; /* Evita que se subraye */
+    color: var(--text-main) !important; /* Lo mantiene blanco */
 }
 
 .logo span {
@@ -67,7 +63,7 @@ body {
 
 /* Botones estilo Neón */
 .btn-neon {
-    padding: 10px 20px;
+    padding: 8px 20px;
     border: 1px solid var(--accent-neon);
     background: transparent;
     color: var(--accent-neon) !important;
@@ -76,6 +72,8 @@ body {
     border-radius: 4px;
     transition: all 0.3s ease;
     box-shadow: inset 0 0 5px rgba(0, 243, 255, 0.2);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-neon:hover {
@@ -162,4 +160,68 @@ footer {
 
 .gamer-table tr:hover {
     background: rgba(255, 255, 255, 0.02);
+}
+
+/* Área de subida Drag & Drop */
+.upload-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.upload-area {
+    width: 100%;
+    min-height: 200px;
+    border: 2px dashed var(--accent-neon);
+    background: rgba(13, 14, 21, 0.8);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* Ícono placeholder por defecto (Aquí usaremos la imagen que me diste) */
+    background-image: url("{{ url_for('static', filename='img/upload_icon.png') }}"); /* Asegúrate de guardar la imagen con este nombre en static/img */
+    background-repeat: no-repeat;
+    background-position: center 30px;
+    background-size: 80px auto; /* Tamaño del ícono */
+}
+
+/* Efectos al arrastrar una imagen encima */
+.upload-area.dragging {
+    border-color: #ffcc00; /* Un color amarillo neón para avisar */
+    background-color: rgba(255, 204, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+}
+
+.upload-area p {
+    color: var(--text-main);
+    margin-top: 100px; /* Para que el texto quede debajo del ícono */
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.upload-area small {
+    color: #a0aec0;
+}
+
+/* Contenedor de la vista previa de la imagen */
+.preview-container {
+    margin-top: 15px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-neon);
+    overflow: hidden;
+    display: none; /* Oculto hasta que se seleccione una imagen */
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
