@@ -50,3 +50,13 @@ def lista_equipos():
     equipos_confirmados = EquipoModel.obtener_aprobados()
     
     return render_template('public/equipos.html', equipos=equipos_confirmados)
+
+@public_bp.route('/equipo/<int:id_equipo>')
+def detalle_equipo(id_equipo):
+    # Buscamos la info del equipo y sus integrantes
+    equipo = EquipoModel.obtener_detalle_completo(id_equipo)
+    if not equipo:
+        flash("Equipo no encontrado", "error")
+        return redirect(url_for('public.lista_equipos'))
+    
+    return render_template('public/detalle_equipo.html', equipo=equipo)

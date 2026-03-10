@@ -1,18 +1,221 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div style="text-align: center; margin-top: 80px;">
-    <h1 style="font-size: 3em; text-shadow: 0 0 15px var(--accent-neon);">
-        ¡BIENVENIDOS A HUASCARÁN E-SPORTS!
-    </h1>
-    <p style="font-size: 1.5em; margin-top: 20px; color: #a0aec0;">
-        El mejor torneo de Mobile Legends: Bang Bang está por comenzar.
-    </p>
-    
-    <div style="margin-top: 50px;">
-        <a href="{{ url_for('public.registro') }}" class="btn-neon" style="font-size: 1.2em; padding: 15px 30px;">
-            ¡Inscribe a tu equipo ahora!
-        </a>
+<div class="bg-fixed-home" style="background-image: url('{{ url_for('static', filename='img/fondo_escenario.jpg') }}');"></div>
+<div class="bg-overlay-home"></div>
+
+<section class="section-transparent d-flex align-items-center" style="min-height: 85vh; padding-top: 40px;">
+    <div class="container relative" style="z-index: 2;">
+        <div class="row align-items-center">
+            
+            <div class="col-lg-6 order-2 order-lg-1 mt-5 mt-lg-0 text-center text-lg-start">
+                <div class="title-line mx-auto mx-lg-0"></div>
+                <h1 style="font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase;">
+                    FORJA TU <br>
+                    <span style="color: var(--accent-neon); text-shadow: 0 0 20px rgba(0,243,255,0.4);">LEYENDA AQUÍ</span>
+                </h1>
+                <p style="font-size: 1.2rem; color: #cbd5e0; margin-bottom: 40px;">
+                    El circuito competitivo más exigente de Ancash abre sus puertas. Huascarán E-Sports te invita al torneo oficial de Mobile Legends: Bang Bang 2026.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                    <a href="{{ url_for('public.registro') }}" class="btn-neon" style="padding: 15px 40px; font-size: 1.1rem; border-radius: 4px;">
+                        INSCRIPCIÓN ABIERTA
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 order-1 order-lg-2 position-relative">
+                <div class="hero-char-box">
+                    <img src="{{ url_for('static', filename='img/heroe_principal.png') }}" alt="Héroe MLBB" class="hero-png hero-main-png">
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+</section>
+
+<section class="section-transparent">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 style="color: #fff; font-weight: bold; text-transform: uppercase;">LA EXPERIENCIA <span style="color: var(--accent-neon);">HUASCARÁN</span></h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">No somos solo un torneo, somos una liga profesional.</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="glass-card" style="height: 100%;">
+                    <img src="{{ url_for('static', filename='img/kick_logo.png') }}" alt="Kick" style="height: 40px; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(83, 252, 24, 0.4));">
+                    <h3 style="color: #fff; font-size: 1.3rem;">KICK LIVE</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Transmisiones exclusivas de las fases finales a través de Kick, con drops y dinámicas para los espectadores.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="glass-card" style="height: 100%;">
+                    <span style="font-size: 2.5em; display: block; margin-bottom: 15px;">🖥️</span>
+                    <h3 style="color: #fff; font-size: 1.3rem;">PRODUCCIÓN 4K</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Overlays personalizados, repeticiones instantáneas, análisis de drafts y seguimiento MVP en cada partida.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="glass-card" style="height: 100%;">
+                    <span style="font-size: 2.5em; display: block; margin-bottom: 15px;">🔄</span>
+                    <h3 style="color: #fff; font-size: 1.3rem;">CIRCUITO ACTIVO</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Torneos relámpago, ligas de temporada y eventos periódicos.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="glass-card" style="height: 100%;">
+                    <span style="font-size: 2.5em; display: block; margin-bottom: 15px;">🎧</span>
+                    <h3 style="color: #fff; font-size: 1.3rem;">SOPORTE 24/7</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Atención constante y canal directo vía Discord/WhatsApp para capitanes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-transparent" style="padding: 0 20px;">
+    <div class="container">
+        <div class="afiche-showcase">
+            <img src="{{ url_for('static', filename='img/afiche_torneo.jpg') }}" alt="Afiche Oficial Huascarán E-Sports">
+        </div>
+    </div>
+</section>
+
+<section class="section-transparent">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="hero-char-box">
+                    <img src="{{ url_for('static', filename='img/heroe_media.png') }}" alt="Héroe Media" class="hero-png">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="title-line"></div>
+                <h2 style="color: #fff; font-size: 2.5rem; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">
+                    TRANSMISIÓN DE <span style="color: var(--accent-neon);">ALTO CALIBRE</span>
+                </h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    Queremos que te sientas como un verdadero pro-player. Huascarán E-Sports invierte en un sistema de broadcasting de última generación para llevar tus jugadas a miles de pantallas.
+                </p>
+                <ul style="list-style: none; padding: 0; color: #fff; font-weight: 600;">
+                    <li style="margin-bottom: 10px;"><span style="color: var(--accent-neon); margin-right: 10px;">✓</span> Casters y en vivo</li>
+                    <li style="margin-bottom: 10px;"><span style="color: var(--accent-neon); margin-right: 10px;">✓</span> Entrevistas post-partida al MVP</li>
+                    <li><span style="color: var(--accent-neon); margin-right: 10px;">✓</span> Highlights publicados en nuestras redes oficiales</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-transparent">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 order-2 order-lg-1">
+                <div class="title-line"></div>
+                <h2 style="color: #fff; font-size: 2.5rem; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">
+                    ORDEN Y <span style="color: var(--accent-neon);">DISCIPLINA</span>
+                </h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    Para garantizar la mejor experiencia, Huascarán E-Sports se rige por un código de conducta estricto. Nuestro equipo de árbitros (Staff) validará cada partida para evitar el uso de hacks, smurfs no declarados o comportamientos tóxicos.
+                </p>
+                <ul style="list-style: none; padding: 0; color: #fff; font-weight: 600;">
+                    <li style="margin-bottom: 10px;"><span style="color: var(--accent-neon); margin-right: 10px;">✓</span> Verificación rigurosa de Rosters (IDs reales)</li>
+                    <li style="margin-bottom: 10px;"><span style="color: var(--accent-neon); margin-right: 10px;">✓</span> Tiempos de tolerancia exactos (10 Minutos)</li>
+                    <li><span style="color: var(--accent-neon); margin-right: 10px;">✓</span> Fair Play y respeto mutuo</li>
+                </ul>
+            </div>
+            <div class="col-lg-5 order-1 order-lg-2 mb-5 mb-lg-0">
+                <div class="hero-char-box">
+                    <img src="{{ url_for('static', filename='img/heroe_erudito.png') }}" alt="Héroe Orden" class="hero-png">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-transparent">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 style="color: #fff; font-weight: bold; text-transform: uppercase;">HOJA DE <span style="color: var(--accent-neon);">RUTA</span></h2>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card" style="padding: 20px;">
+                    <h4 style="color: #fff; font-size: 1.4rem; margin-bottom: 5px;">1. Registros</h4>
+                    <span class="badge" style="background: rgba(0,243,255,0.2); color: var(--accent-neon); margin-bottom: 10px;">Hasta 15 Abril</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">Inscripción de equipos, validación de rosters y pagos.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card" style="padding: 20px;">
+                    <h4 style="color: #fff; font-size: 1.4rem; margin-bottom: 5px;">2. Qualifiers</h4>
+                    <span class="badge" style="background: rgba(0,243,255,0.2); color: var(--accent-neon); margin-bottom: 10px;">20 - 22 Abril</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">Eliminatorias directas al mejor de 3 (BO3) sin transmisión.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card" style="padding: 20px;">
+                    <h4 style="color: #fff; font-size: 1.4rem; margin-bottom: 5px;">3. Semifinales</h4>
+                    <span class="badge" style="background: rgba(0,243,255,0.2); color: var(--accent-neon); margin-bottom: 10px;">25 de Abril</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">El Top 4 se enfrenta en formato BO5 con transmisión parcial.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card" style="padding: 20px; border-color: var(--accent-neon); box-shadow: 0 0 20px rgba(0,243,255,0.2);">
+                    <h4 style="color: #fff; font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 10px var(--accent-neon);">4. Gran Final</h4>
+                    <span class="badge" style="background: var(--accent-neon); color: #000; margin-bottom: 10px; font-weight: bold;">30 de Abril</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">Coronación del campeón en vivo a través de Kick.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section-transparent">
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <div class="hero-char-box">
+                    <img src="{{ url_for('static', filename='img/heroe_tactico.png') }}" alt="Héroe Táctico" class="hero-png">
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="title-line"></div>
+                <h2 style="color: #fff; font-weight: bold; text-transform: uppercase; margin-bottom: 20px;">
+                    RESOLUCIÓN DE <span style="color: var(--accent-neon);">DUDAS</span>
+                </h2>
+                <div class="accordion" id="faqTorneo">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">¿Costo de inscripción y formas de pago?</button></h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqTorneo">
+                            <div class="accordion-body">S/ 30.00 por escuadra (5 titulares + 1 suplente). Aceptamos depósitos directos vía Yape o Plin. La fecha del comprobante se sube junto al formulario de registro.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">¿Cómo funciona el soporte para capitanes?</button></h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqTorneo">
+                            <div class="accordion-body">Una vez aprobados, los capitanes recibirán acceso a un canal privado de Discord y un grupo de WhatsApp oficial donde los moderadores estarán disponibles para coordinar horarios y disputas.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">¿Cómo sabemos los Brackets (llaves)?</button></h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqTorneo">
+                            <div class="accordion-body">Se realizará un sorteo en vivo en nuestra transmisión de Kick al cerrar las inscripciones. Los Brackets se publicarán en la web y redes sociales.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 {% endblock %}

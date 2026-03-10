@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{{ url_for('public.lista_equipos') }}" class="btn-neon mb-4 d-inline-block" style="padding: 5px 15px; text-decoration: none; font-size: 0.9em;">
+        ← VOLVER A LA LISTA
+    </a>
+
+    <div class="dni-card">
+        <div class="dni-header">
+            <span class="dni-header-text">REPÚBLICA E-SPORTS // FICHA OFICIAL DE COMPETIDOR</span>
+            <span>ID-{{ equipo.idEquipos }}</span>
+        </div>
+
+        <div class="dni-body">
+            <div class="dni-left">
+                <div class="dni-input-group" style="width: 100%;">
+                    <span class="dni-label" style="text-align: center; display: block; margin-bottom: 5px;">EMBLEMA NACIONAL</span>
+                    <div class="photo-area" style="border-style: solid; border-color: var(--accent-neon);">
+                        {% if equipo.logo %}
+                            <img src="{{ equipo.logo }}" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                            <span style="font-size: 50px; font-weight: bold; color: var(--accent-neon);">{{ equipo.nombre[:2].upper() }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="empresa-logo-container">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="empresa-logo-img">
+                    <p class="empresa-logo-text">TORNEO OFICIAL 2026</p>
+                </div>
+            </div>
+
+            <div class="dni-right">
+                <div class="dni-input-group full-width">
+                    <label class="dni-label">DENOMINACIÓN DEL GRUPO (EQUIPO)</label>
+                    <div class="dni-input" style="border-color: var(--accent-neon); font-size: 1.5em; text-align: center;">
+                        {{ equipo.nombre }}
+                    </div>
+                </div>
+
+                <div class="roster-divider"> [ INTEGRANTES DEL DESTACAMENTO ] </div>
+
+                {% for integrante in equipo.integrantes %}
+                <div class="dni-input-group">
+                    <label class="dni-label">OPERADOR 0{{ loop.index }} {% if loop.index == 6 %}(SUPLENTE){% endif %}</label>
+                    <div class="dni-input">{{ integrante.apodo }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="padding: 15px; text-align: center; background: rgba(0, 243, 255, 0.05); border-top: 1px solid #2d3748;">
+            <small style="color: var(--accent-neon); letter-spacing: 2px;">DOCUMENTO VALIDADO POR EL COMITÉ TÉCNICO DE HUASCARÁN E-SPORTS</small>
+        </div>
+    </div>
+</div>
+{% endblock %}

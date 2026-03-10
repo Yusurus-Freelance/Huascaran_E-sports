@@ -102,3 +102,23 @@ class EquipoModel:
         finally:
             if conexion:
                 conexion.close()
+                
+    @staticmethod
+    def obtener_detalle_completo(id_equipo):
+        conexion = get_db_connection()
+        try:
+            with conexion.cursor() as cursor:
+                # 1. Traer datos del equipo
+                sql_equipo = "SELECT idEquipos, nombre, logo, fecha_creacion FROM Equipos WHERE idEquipos = %s AND estado_validacion = 'si'"
+                cursor.execute(sql_equipo, (id_equipo,))
+                equipo = cursor.fetchone()
+                
+                if equipo:
+                    # 2. Traer sus integrantes
+                    sql_integrantes = "SELECT apodo FROM Integrantes WHERE idEquipos = %s"
+                    cursor.execute(sql_integrantes, (id_equipo,))
+                    equipo['integrantes'] = cursor.fetchall()
+                
+                return equipo
+        finally:
+            conexion.close()
