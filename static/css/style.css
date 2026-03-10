@@ -14,202 +14,104 @@ body {
     margin: 0;
 }
 
-/* NAVBAR AJUSTADA */
-.navbar {
-    padding: 10px 0;
-    transition: all 0.3s;
+/* --- NAVBAR --- */
+.logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; text-decoration: none !important; }
+.logo span { color: var(--accent-neon); text-shadow: 0 0 10px var(--accent-neon); }
+.btn-neon { border: 1px solid var(--accent-neon); background: transparent; color: var(--accent-neon) !important; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
+.btn-neon:hover { background: var(--accent-neon); color: var(--bg-color) !important; box-shadow: 0 0 15px var(--accent-neon); }
+
+/* --- GRID DE EQUIPOS (VISTA PÚBLICA) --- */
+.equipos-grid {
+    display: grid;
+    /* En móviles 1 sola columna */
+    grid-template-columns: 1fr; 
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-decoration: none !important;
-}
-
-.logo span {
-    color: var(--accent-neon);
-    text-shadow: 0 0 10px var(--accent-neon);
-}
-
-.btn-neon {
-    border: 1px solid var(--accent-neon);
-    background: transparent;
-    color: var(--accent-neon) !important;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.btn-neon:hover {
-    background: var(--accent-neon);
-    color: var(--bg-color) !important;
-    box-shadow: 0 0 15px var(--accent-neon);
-}
-
-/* DISEÑO DNI (REGISTRO) */
-.dni-card {
-    max-width: 950px;
-    margin: 20px auto;
-    background: linear-gradient(135deg, rgba(16, 20, 28, 0.95) 0%, rgba(9, 11, 15, 0.95) 100%);
+.equipo-card {
+    background: var(--card-bg);
     border: 1px solid #2d3748;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.dni-header {
-    background: var(--accent-neon);
-    color: var(--bg-color);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-}
-
-.dni-body {
-    display: flex;
-    padding: 25px;
-    gap: 30px;
-}
-
-.dni-left {
-    flex: 0 0 220px;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    /* Eliminamos cualquier float o display inline que pueda estorbar */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
 
-.photo-area {
-    width: 220px;
-    height: 220px;
-    border: 2px dashed #4a5568;
-    border-radius: 8px;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dni-right {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 15px;
-}
-
-.dni-label {
-    color: var(--text-muted);
-    font-size: 0.8em;
-    text-transform: uppercase;
-}
-
-.dni-input {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid #4a5568;
-    color: var(--accent-neon);
-    padding: 8px;
-    border-radius: 4px;
-    width: 100%;
-}
-
-/* PANEL DE VALIDACIÓN (STAFF) */
-.table-container {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 15px;
-    border: 1px solid #2d3748;
-}
-
-.table-responsive {
-    overflow-x: auto;
-}
-
-/* RESPONSIVE (CELULARES) */
-@media (max-width: 850px) {
-    .container { padding-left: 0; padding-right: 0; }
-    
-    .dni-card {
-        margin: 0;
-        width: 100%;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
-    }
-    
-    .dni-body {
-        flex-direction: column;
-        padding: 15px;
-    }
-    
-    .dni-header {
-        flex-direction: column;
-        text-align: center;
-        font-size: 0.8em;
-    }
-    
-    .dni-right {
-        grid-template-columns: 1fr;
-    }
-
-    .photo-area {
-        width: 180px;
-        height: 180px;
+/* --- RESPONSIVE / DESKTOP --- */
+@media (min-width: 768px) {
+    /* En tablets/laptops pequeñas: 3 columnas */
+    .equipos-grid {
+        grid-template-columns: repeat(3, 1fr); 
     }
 }
 
-/* --- ESTILOS LOGIN --- */
-.login-container {
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 30px;
-    background: rgba(16, 20, 28, 0.95);
-    border: 1px solid var(--accent-neon);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-    text-align: center;
+@media (min-width: 1024px) {
+    /* En PC normal: 4 columnas */
+    .equipos-grid {
+        grid-template-columns: repeat(4, 1fr); 
+    }
 }
 
-.login-title {
-    color: var(--accent-neon);
-    font-size: 2em;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+@media (min-width: 1400px) {
+    /* En monitores grandes: 5 columnas */
+    .equipos-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
-
-.login-form .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-/* Reemplaza los cuadros blancos por estos inputs oscuros neón */
-.login-input {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid #2d3748;
-    border-radius: 6px;
-    padding: 12px;
-    color: var(--accent-neon);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.1em;
-    transition: 0.3s;
-}
-
-.login-input:focus {
-    outline: none;
+.equipo-card:hover {
     border-color: var(--accent-neon);
-    box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+    transform: translateY(-5px);
 }
 
-.login-label {
-    display: block;
-    color: var(--text-muted);
-    font-size: 0.85em;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+/* --- DISEÑO DNI (REGISTRO) --- */
+.dni-card {
+    background: linear-gradient(135deg, rgba(16, 20, 28, 0.95) 0%, rgba(9, 11, 15, 0.95) 100%);
+    border: 2px solid #2d3748;
+    overflow: hidden;
+    margin: 10px 5px; /* AQUÍ ESTÁ EL MARGEN DE 5PX PARA QUE SE VEA COMO CARD */
+    border-radius: 12px;
+}
+
+.dni-header { background: var(--accent-neon); color: var(--bg-color); padding: 10px 15px; display: flex; flex-direction: column; text-align: center; border-bottom: 2px solid #fff; }
+.dni-body { padding: 20px 15px; display: flex; flex-direction: column; gap: 20px; }
+.dni-left { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.photo-area { width: 200px; height: 200px; border: 2px dashed #4a5568; border-radius: 8px; position: relative; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+.dni-right { display: flex; flex-direction: column; gap: 12px; }
+.dni-input { background: rgba(0,0,0,0.3); border: 1px solid #4a5568; border-radius: 4px; padding: 10px; color: var(--accent-neon); font-family: 'Rajdhani'; }
+.roster-divider { border-top: 1px solid #2d3748; margin-top: 10px; padding-top: 10px; text-align: center; color: var(--accent-neon); font-weight: bold; }
+
+/* --- RESPONSIVE / DESKTOP --- */
+@media (min-width: 768px) {
+    /* Equipos: 4 columnas en PC */
+    .equipos-grid {
+        grid-template-columns: repeat(4, 1fr); 
+    }
+
+    .dni-card {
+        max-width: 950px;
+        margin: 50px auto !important;
+        border-radius: 15px;
+    }
+
+    .dni-header { flex-direction: row; justify-content: space-between; padding: 10px 20px; }
+    .dni-body { flex-direction: row; padding: 30px; gap: 30px; }
+    .dni-left { flex: 0 0 220px; }
+    .photo-area { width: 220px; height: 220px; }
+    .dni-right { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .dni-input-group.full-width { grid-column: 1 / -1; }
+    .roster-divider { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1200px) {
+    /* Equipos: 5 columnas en monitores grandes */
+    .equipos-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
